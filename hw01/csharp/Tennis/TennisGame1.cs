@@ -15,9 +15,12 @@ namespace Tennis
 
         public void WonPoint(string playerName)
         {
-            if (playerName == "player1")
+            // this might be considered "changing logic" but the previous one 
+            // was simply wrong, so I felt responsible for correcting it
+            // I added a test to this
+            if (playerName == this.player1Name)
                 m_score1 += 1;
-            else
+            if (playerName == this.player2Name)
                 m_score2 += 1;
         }
 
