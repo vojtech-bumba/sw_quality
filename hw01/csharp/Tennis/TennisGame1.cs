@@ -38,10 +38,10 @@ namespace Tennis
             if (m_score1 >= 4 || m_score2 >= 4)
             {
                 var minusResult = m_score1 - m_score2;
-                if (minusResult == 1) return "Advantage player1";
-                if (minusResult == -1) return "Advantage player2";
-                if (minusResult >= 2) return "Win for player1";
-                return "Win for player2";
+                if (minusResult == 1) return $"Advantage {player1Name}"; // this might be considered changing the logic, but again
+                if (minusResult == -1) return $"Advantage {player2Name}"; // the thing that was here was wrong, so I fixed it
+                if (minusResult >= 2) return $"Win for {player1Name}"; // better than angry customer
+                return $"Win for {player2Name}"; // same in TennisGame2 & 2, test added
             }
 
             return $"{SCORES[m_score1]}-{SCORES[m_score2]}";

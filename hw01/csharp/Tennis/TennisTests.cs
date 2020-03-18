@@ -131,6 +131,17 @@ namespace Tennis
             game.WonPoint("player3");
             Assert.AreEqual(game.GetScore(), "Love-All");
         }
+
+        [Test]
+        public void ActualPlayerHasWon()
+        {
+            var game = new TennisGame1("Vojta", "Jakub");
+            for (int i = 0; i < 6; ++i)
+            {
+                game.WonPoint("Vojta");
+            }
+            Assert.AreEqual(game.GetScore(), "Win for Vojta");
+        }
     }
 
     [TestFixture]
@@ -143,6 +154,17 @@ namespace Tennis
             game.WonPoint("player3");
             Assert.AreEqual(game.GetScore(), "Love-All");
         }
+
+        [Test]
+        public void ActualPlayerHasWon()
+        {
+            var game = new TennisGame2("Vojta", "Jakub");
+            for (int i = 0; i < 6; ++i)
+            {
+                game.WonPoint("Vojta");
+            }
+            Assert.AreEqual(game.GetScore(), "Win for Vojta");
+        }
     }
 
     [TestFixture]
@@ -154,6 +176,17 @@ namespace Tennis
             var game = new TennisGame3("player1", "player2");
             game.WonPoint("player3");
             Assert.AreEqual(game.GetScore(), "Love-All");
+        }
+
+        [Test]
+        public void ActualPlayerHasWon()
+        {
+            var game = new TennisGame3("Vojta", "Jakub");
+            for (int i = 0; i < 6; ++i)
+            {
+                game.WonPoint("Vojta");
+            }
+            Assert.AreEqual(game.GetScore(), "Win for Vojta");
         }
     }
 
