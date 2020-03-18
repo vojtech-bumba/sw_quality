@@ -133,5 +133,29 @@ namespace Tennis
         }
     }
 
+    [TestFixture]
+    public class NewTestsTennisGame2
+    {
+        [Test]
+        public void NonExistingNameWonPoint()
+        {
+            var game = new TennisGame2("player1", "player2");
+            game.WonPoint("player3");
+            Assert.AreEqual(game.GetScore(), "Love-All");
+        }
+    }
+
+    [TestFixture]
+    public class NewTestsTennisGame3
+    {
+        [Test]
+        public void NonExistingNameWonPoint()
+        {
+            var game = new TennisGame3("player1", "player2");
+            game.WonPoint("player3");
+            Assert.AreEqual(game.GetScore(), "Love-All");
+        }
+    }
+
 }
 

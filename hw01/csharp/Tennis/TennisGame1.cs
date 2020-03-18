@@ -7,6 +7,9 @@ namespace Tennis
         private string player1Name;
         private string player2Name;
 
+        // order matters
+        private string[] SCORES = new string[] { "Love", "Fifteen", "Thirty", "Forty" };
+
         public TennisGame1(string player1Name, string player2Name)
         {
             this.player1Name = player1Name;
@@ -17,6 +20,7 @@ namespace Tennis
         {
             // this might be considered "changing logic" but the previous one 
             // was simply wrong, so I felt responsible for correcting it
+            // same in TennisGame2 and TennisGame3
             // I added a test to this
             if (playerName == this.player1Name)
                 m_score1 += 1;
@@ -26,59 +30,21 @@ namespace Tennis
 
         public string GetScore()
         {
-            string score = "";
-            var tempScore = 0;
             if (m_score1 == m_score2)
             {
-                switch (m_score1)
-                {
-                    case 0:
-                        score = "Love-All";
-                        break;
-                    case 1:
-                        score = "Fifteen-All";
-                        break;
-                    case 2:
-                        score = "Thirty-All";
-                        break;
-                    default:
-                        score = "Deuce";
-                        break;
-
-                }
+                return m_score1 < 3 ? $"{SCORES[m_score1]}-All" : "Deuce";
             }
-            else if (m_score1 >= 4 || m_score2 >= 4)
+
+            if (m_score1 >= 4 || m_score2 >= 4)
             {
                 var minusResult = m_score1 - m_score2;
-                if (minusResult == 1) score = "Advantage player1";
-                else if (minusResult == -1) score = "Advantage player2";
-                else if (minusResult >= 2) score = "Win for player1";
-                else score = "Win for player2";
+                if (minusResult == 1) return "Advantage player1";
+                if (minusResult == -1) return "Advantage player2";
+                if (minusResult >= 2) return "Win for player1";
+                return "Win for player2";
             }
-            else
-            {
-                for (var i = 1; i < 3; i++)
-                {
-                    if (i == 1) tempScore = m_score1;
-                    else { score += "-"; tempScore = m_score2; }
-                    switch (tempScore)
-                    {
-                        case 0:
-                            score += "Love";
-                            break;
-                        case 1:
-                            score += "Fifteen";
-                            break;
-                        case 2:
-                            score += "Thirty";
-                            break;
-                        case 3:
-                            score += "Forty";
-                            break;
-                    }
-                }
-            }
-            return score;
+
+            return $"{SCORES[m_score1]}-{SCORES[m_score2]}";
         }
     }
 }
