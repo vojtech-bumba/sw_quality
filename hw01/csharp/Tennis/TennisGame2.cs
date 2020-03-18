@@ -2,8 +2,8 @@ namespace Tennis
 {
     public class TennisGame2 : ITennisGame
     {
-        private int p1point;
-        private int p2point;
+        private int p1point = 0;
+        private int p2point = 0;
 
         private string p1res = "";
         private string p2res = "";
@@ -13,14 +13,13 @@ namespace Tennis
         public TennisGame2(string player1Name, string player2Name)
         {
             this.player1Name = player1Name;
-            p1point = 0;
             this.player2Name = player2Name;
         }
 
         public string GetScore()
         {
             var score = "";
-            if (p1point == p2point && p1point < 3)
+            if (p1point == p2point)
             {
                 if (p1point == 0)
                     score = "Love";
@@ -28,10 +27,8 @@ namespace Tennis
                     score = "Fifteen";
                 if (p1point == 2)
                     score = "Thirty";
-                score += "-All";
+                return score.Length > 0 ? $"{score}-All" : "Deuce";
             }
-            if (p1point == p2point && p1point > 2)
-                score = "Deuce";
 
             if (p1point > 0 && p2point == 0)
             {
@@ -106,36 +103,20 @@ namespace Tennis
 
         public void SetP1Score(int number)
         {
-            for (int i = 0; i < number; i++)
-            {
-                P1Score();
-            }
+            p1point += number;
         }
 
         public void SetP2Score(int number)
         {
-            for (var i = 0; i < number; i++)
-            {
-                P2Score();
-            }
-        }
-
-        private void P1Score()
-        {
-            p1point++;
-        }
-
-        private void P2Score()
-        {
-            p2point++;
+            p2point += number;
         }
 
         public void WonPoint(string player)
         {
             if (player == player1Name)
-                P1Score();
+                p1point++;
             if (player == player2Name)
-                P2Score();
+                p2point++;
         }
 
     }
